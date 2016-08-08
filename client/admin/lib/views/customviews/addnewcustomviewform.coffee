@@ -6,6 +6,7 @@ remote = require('app/remote').getInstance()
 JView = require 'app/jview'
 Encoder = require 'htmlencode'
 AceView = require 'ace/aceview'
+__t     = require('i18next').t
 
 
 module.exports = class AddNewCustomViewForm extends JView
@@ -22,14 +23,14 @@ module.exports = class AddNewCustomViewForm extends JView
       defaultValue: @getData()?.name or ''
 
     @cancelButton = new KDButtonView
-      title       : 'CANCEL'
+      title       : __t 'CANCEL'
       cssClass    : 'solid red medium'
       callback    : =>
         @destroy()
         @getDelegate().emit 'AddingNewViewCancelled'
 
     @saveButton   = new KDButtonView
-      title       : 'SAVE'
+      title       : __t 'SAVE'
       cssClass    : 'solid green medium'
       callback    : @bound 'addNew'
 

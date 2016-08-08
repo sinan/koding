@@ -5,6 +5,7 @@ HomePageCustomViewItem = require './homepagecustomviewitem'
 WidgetCustomViewItem = require './widgetcustomviewitem'
 JView = require 'app/jview'
 kookies = require 'kookies'
+__t     = require('i18next').t
 
 
 module.exports = class CustomViewsManager extends JView
@@ -18,7 +19,7 @@ module.exports = class CustomViewsManager extends JView
     super options, data
 
     @previewButton = new KDButtonView
-      title        : 'PREVIEW'
+      title        : __t 'PREVIEW'
       cssClass     : 'solid green preview'
       callback     : @bound 'togglePreview'
 
@@ -27,13 +28,13 @@ module.exports = class CustomViewsManager extends JView
       @previewButton.unsetClass 'green'
 
     @homePages  = new CustomViewsAdminView
-      title     : 'Home Pages'
+      title     : __t 'Home Pages'
       viewType  : 'HOME'
       cssClass  : 'home-pages'
       itemClass : HomePageCustomViewItem
 
     @widgets    = new CustomViewsAdminView
-      title     : 'Widgets'
+      title     : __t 'Widgets'
       viewType  : 'WIDGET'
       cssClass  : 'widgets'
       itemClass : WidgetCustomViewItem
@@ -45,11 +46,11 @@ module.exports = class CustomViewsManager extends JView
 
     if isPreview
       kookies.set cookieName, no
-      @previewButton.setTitle 'PREVIEW'
+      @previewButton.setTitle __t 'PREVIEW'
       @previewButton.setClass 'green'
     else
       kookies.set cookieName, yes
-      @previewButton.setTitle   'CANCEL PREVIEW'
+      @previewButton.setTitle   __t 'CANCEL PREVIEW'
       @previewButton.unsetClass 'green'
 
 
