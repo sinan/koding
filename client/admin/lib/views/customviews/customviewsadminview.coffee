@@ -6,6 +6,7 @@ AddNewCustomViewForm = require './addnewcustomviewform'
 CustomViewItem = require './customviewitem'
 remote = require('app/remote').getInstance()
 JView = require 'app/jview'
+__t   = require('i18next').t
 
 
 module.exports = class CustomViewsAdminView extends JView
@@ -31,7 +32,7 @@ module.exports = class CustomViewsAdminView extends JView
     @noViewLabel  = new KDCustomHTMLView
       tagName     : 'p'
       cssClass    : 'no-view'
-      partial     : "Currently there is no view for this section. Why don't you add new one?"
+      partial     : __t "Currently there is no view for this section. Why don't you add new one?"
 
     @loader       = new KDLoaderView
       cssClass    : 'loader'

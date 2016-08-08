@@ -2,6 +2,7 @@ kd = require 'kd'
 KDCustomHTMLView = kd.CustomHTMLView
 KDSelectBox = kd.SelectBox
 CustomViewItem = require './customviewitem'
+__t            = require('i18next').t
 
 
 module.exports = class WidgetCustomViewItem extends CustomViewItem
@@ -9,7 +10,7 @@ module.exports = class WidgetCustomViewItem extends CustomViewItem
   creteElements: ->
     super
 
-    selectOptions    = [ { title : 'Not Active', value : 'NOT_VISIBLE' } ]
+    selectOptions    = [ { title : __t 'Not Active', value : 'NOT_VISIBLE' } ]
     widgetController = kd.getSingleton 'widgetController'
 
     for key, widget of widgetController.getPlaceholders()
@@ -18,14 +19,14 @@ module.exports = class WidgetCustomViewItem extends CustomViewItem
     data = @getData()
 
     @assignSelect   = new KDSelectBox
-      preview       : 'Publish'
+      preview       : __t 'Publish'
       cssClass      : 'assign solid green'
       selectOptions : selectOptions
       defaultValue  : data.isActive and data.viewInstance ? 'NOT_VISIBLE'
       callback      : (value) => @updateState value
 
     @previewSelect  = new KDSelectBox
-      title         : 'Preview'
+      title         : __t 'Preview'
       cssClass      : 'solid green preview-select'
       selectOptions : selectOptions
       defaultValue  : data.isPreview and data.previewInstance ? 'NOT_VISIBLE'
@@ -34,12 +35,12 @@ module.exports = class WidgetCustomViewItem extends CustomViewItem
     @previewLabel   = new KDCustomHTMLView
       tagName       : 'span'
       cssClass      : 'select-label'
-      partial       : 'Preview'
+      partial       : __t 'Preview'
 
     @assignLabel    = new KDCustomHTMLView
       tagName       : 'span'
       cssClass      : 'select-label assign'
-      partial       : 'Publish'
+      partial       : __t 'Publish'
 
   updateState: (value, previewRequest) ->
     delegate = @getDelegate()

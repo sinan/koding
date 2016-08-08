@@ -2,6 +2,7 @@ kd = require 'kd'
 KDButtonView = kd.ButtonView
 KDModalView = kd.ModalView
 JView = require 'app/jview'
+__t   = require('i18next').t
 
 
 module.exports = class CustomViewItem extends JView
@@ -28,18 +29,18 @@ module.exports = class CustomViewItem extends JView
 
   notify: (callback = kd.noop) ->
     modal          = new KDModalView
-      title        : 'Are you sure?'
-      content      : 'Are you sure you want to delete the item. This cannot be undone.'
+      title        : __t 'Are you sure?'
+      content      : __t 'Are you sure you want to delete the item. This cannot be undone.'
       overlay      : yes
       buttons      :
         Delete     :
-          title    : 'Delete'
+          title    : __t 'Delete'
           cssClass : 'solid red medium'
           callback : ->
             callback()
             modal.destroy()
         Cancel     :
-          title    : 'Cancel'
+          title    : __t 'Cancel'
           cssClass : 'solid light-gray medium'
           callback : -> modal.destroy()
 

@@ -4,6 +4,7 @@ getGroup         = require 'app/util/getGroup'
 showError        = require 'app/util/showError'
 KodingSwitch     = require 'app/commonviews/kodingswitch'
 APITokenListView = require './apitokenlistview'
+__t              = require('i18next').t
 
 
 module.exports = class AdminAPIView extends kd.View
@@ -22,7 +23,7 @@ module.exports = class AdminAPIView extends kd.View
   createSwitch: ->
 
     @addSubView settingsView = new kd.CustomHTMLView
-      partial: 'Enable API Access'
+      partial: __t 'Enable API Access'
       cssClass: 'settings-row'
 
     settingsView.addSubView apiSwitch = new KodingSwitch
@@ -48,7 +49,7 @@ module.exports = class AdminAPIView extends kd.View
 
     @addNewButton = tabView.tabHandleContainer.addSubView new kd.ButtonView
       cssClass : 'solid compact green add-new'
-      title    : 'Add new API Token'
+      title    : __t 'Add new API Token'
       callback : =>
         remote.api.JApiToken.create (err, apiToken) =>
           return showError err  if err
@@ -57,11 +58,11 @@ module.exports = class AdminAPIView extends kd.View
 
     toggleButtonState @addNewButton, @initialAPIAccessState
 
-    tabView.addPane apiTokens = new kd.TabPaneView { name: 'API Tokens' }
+    tabView.addPane apiTokens = new kd.TabPaneView { name: __t 'API Tokens' }
 
     apiTokens.addSubView @apiTokenListView = new APITokenListView
       noItemFoundWidget : new kd.CustomHTMLView
-        partial         : 'No API token found!'
+        partial         : __t 'No API token found!'
         cssClass        : 'no-item-view'
     , data
 

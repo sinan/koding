@@ -1,6 +1,7 @@
 kd            = require 'kd'
 JView         = require 'app/jview'
 timeago       = require 'timeago'
+__t           = require('i18next').t
 
 
 module.exports = class APITokenItemView extends kd.ListItemView
@@ -16,15 +17,15 @@ module.exports = class APITokenItemView extends kd.ListItemView
     listView = @getDelegate()
 
     deleteButtonOptions =
-      title    : 'Delete'
+      title    : __t 'Delete'
       cssClass : 'solid compact red delete'
       callback : =>
         listView.emit 'ItemAction',
           action        : 'RemoveItem'
           item          : this
           options       :
-            title       : 'Remove API Token'
-            description : 'Do you want to remove?'
+            title       : __t 'Remove API Token'
+            description : __t 'Do you want to remove?'
 
     @deleteButton = new kd.ButtonView deleteButtonOptions
 

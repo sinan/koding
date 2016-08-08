@@ -3,6 +3,7 @@ KDCustomHTMLView = kd.CustomHTMLView
 KDModalView = kd.ModalView
 CustomViewItem = require './customviewitem'
 KodingSwitch = require 'app/commonviews/kodingswitch'
+__t          = require('i18next').t
 
 
 module.exports = class HomePageCustomViewItem extends CustomViewItem
@@ -28,11 +29,11 @@ module.exports = class HomePageCustomViewItem extends CustomViewItem
 
     @previewToggle.addSubView new KDCustomHTMLView
       tagName       : 'span'
-      partial       : 'Preview'
+      partial       : __t 'Preview'
 
     @activateToggle.addSubView new KDCustomHTMLView
       tagName       : 'span'
-      partial       : 'Publish'
+      partial       : __t 'Publish'
 
   confirmAction: (button, callback = kd.noop) ->
     isActivated  = button.getValue()
@@ -47,18 +48,18 @@ module.exports = class HomePageCustomViewItem extends CustomViewItem
         if isActivated then messages.enablePublishing else messages.cancelPublising
 
     modal          = new KDModalView
-      title        : 'Are you sure?'
-      content      : "<p>#{content}</p>"
+      title        : __t 'Are you sure?'
+      content      : "<p>#{__t "HomePageCustomView First content", {content: content}}</p>"
       overlay      : yes
       buttons      :
         Delete     :
-          title    : 'Confirm'
+          title    : __t 'Confirm'
           cssClass : 'solid green medium'
           callback : ->
             callback()
             modal.destroy()
         Cancel     :
-          title    : 'Cancel'
+          title    : __t 'Cancel'
           cssClass : 'solid light-gray medium'
           callback : -> modal.destroy()
 
@@ -101,20 +102,20 @@ module.exports = class HomePageCustomViewItem extends CustomViewItem
 
   messages =
     cancelPreview   : """
-      You are about to cancel preview mode for this item.
-      If you don't have any preview enabled item, be sure you removed the preview cookie by pressing the CANCEL PREVIEW button.
+      #{__t "You are about to cancel preview mode for this item.
+      If you don't have any preview enabled item, be sure you removed the preview cookie by pressing the CANCEL PREVIEW button."}
     """
     enablePreview   : """
-      You are about to preview this item.
-      Bu sure, you already clicked the PREVIEW button to set the cookie.<br /><br />
-      Incognito window won't work because it won't have a preview cookie unless you set one.<br /><br />
-      Known issue: If you have a cookie, you will only see the selected preview item.
-      Currently we won't show you already published item. Sorry for that :(
+      #{__t "You are about to preview this item.
+            Be sure, you already clicked the PREVIEW button to set the cookie.<br /><br />
+            Incognito window won't work because it won't have a preview cookie unless you set one.<br /><br />
+            Known issue: If you have a cookie, you will only see the selected preview item.
+            Currently we won't show you already published item. Sorry for that :( "}
     """
     cancelPublising : '''
-      Are you sure you want to cancel publishing this item?
+      #{__t "Are you sure you want to cancel publishing this item?"}
     '''
     enablePublishing: '''
-      Are you sure you want to publish this item?
-      It will be visible to ALL Koding members!
+      #{__t "Are you sure you want to publish this item?
+            It will be visible to ALL Koding members!"}
     '''
