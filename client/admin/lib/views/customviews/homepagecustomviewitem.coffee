@@ -49,7 +49,7 @@ module.exports = class HomePageCustomViewItem extends CustomViewItem
 
     modal          = new KDModalView
       title        : __t 'Are you sure?'
-      content      : "<p>#{__t "HomePageCustomView First content", {content: content}}</p>"
+      content      : "<p>#{__t "HomePageCustomView First content", {content}}</p>"
       overlay      : yes
       buttons      :
         Delete     :
