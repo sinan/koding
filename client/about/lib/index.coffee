@@ -7,7 +7,7 @@ __t = require('i18next').t
 module.exports = class AboutAppController extends KDViewController
 
   @options =
-    name  : __t'About'
+    name  : __t 'About'
     route : '/:name?/About'
 
 
