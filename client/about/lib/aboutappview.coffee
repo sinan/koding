@@ -1,6 +1,7 @@
 globals = require 'globals'
 JView = require 'app/jview'
 FooterView = require 'app/commonviews/footerview'
+__t = require('i18next').t
 
 
 module.exports = class AboutAppView extends JView
@@ -17,7 +18,7 @@ module.exports = class AboutAppView extends JView
 
     mailDomain = globals.config.domains.mail
 
-    """
+    __t"""
     <section class='introduction'>
       <h2>About Koding</h2>
       <p class='main-description'>
