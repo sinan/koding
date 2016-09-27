@@ -1,0 +1,49 @@
+---
+layout: default
+title: Store
+permalink: /store/home
+order: 40
+---
+
+<!-- HEADER -->
+{% include header.html with_signup_form='true' has_sticky_navigation='true' background_color='#7F7E9E' %}
+
+<link rel="stylesheet" href="{{ site.url }}/css/store.css">
+
+<div class="Hero">
+  <h1 class="Hero-heading">Stack and Stencil Hub</h1>
+  <h2 class="Hero-subheading">Start building your stacks easily with these hundereds of examples</h2>
+  {% include store-search.html %}
+</div>
+<div class="featured-stacks">
+  <div class="container">
+    <div class="text-heading">
+      <h3 class="heading">Featured Stacks</h3>
+      <p class="sub-heading">
+        Nulla vitae elit libero, a pharetra augue. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Integer posuere erat a ante venenatis dapibus posuere.
+      </p>
+    </div>
+    {% include store-set.html data=site.data.store-stacks limit=4 %}
+    <a href="{{ site.url }}/store/stacks" class="Button Button--seeAll">See All Stacks</a>
+  </div>
+</div>
+<div class="featured-stencils">
+  <div class="container">
+    <div class="text-heading">
+      <h3 class="heading">Featured Stencils</h3>
+      <p class="sub-heading">
+        Nulla vitae elit libero, a pharetra augue. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Integer posuere erat a ante venenatis dapibus posuere.
+      </p>
+    </div>
+    {% include store-set.html data=site.data.store-stencils limit=4 %}
+    <a href="#" class="Button Button--seeAll">See All Stencils</a>
+  </div>
+</div>
+
+<script>
+  {% include js/store.js %}
+</script>
+
+<!-- FOOTER -->
+
+{% include footer.html %}
